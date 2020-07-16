@@ -8,7 +8,7 @@ import sys
 from PyQt5.QtPrintSupport import *
 import sqlite3
 import os
-#--------------------------------------------------------------------------------------------------------------------------------
+
 class InsertDialog(QDialog):
     def __init__(self, *args, **kwargs):
         super(InsertDialog, self).__init__(*args, **kwargs)
@@ -54,7 +54,7 @@ class InsertDialog(QDialog):
         
         layout.addWidget(self.QBtn)
         self.setLayout(layout)
-#--------------------------------------------------------------------------------------------------------------------------------
+
     def addstudent(self,widget):
 
         Last = ""
@@ -106,7 +106,7 @@ class InsertDialog(QDialog):
             self.close()
         except Exception:
             QMessageBox.warning(QMessageBox(), 'Error', 'Did not add student to the database.')
-#--------------------------------------------------------------------------------------------------------------------------------
+
 class DeleteDialog(QDialog):
     def __init__(self, *args, **kwargs):
         super(DeleteDialog, self).__init__(*args, **kwargs)
@@ -127,7 +127,7 @@ class DeleteDialog(QDialog):
         layout.addWidget(self.deleteinput)
         layout.addWidget(self.QBtn)
         self.setLayout(layout)
-#--------------------------------------------------------------------------------------------------------------------------------
+
     def deletestudent(self):
 
         delrol = ""
@@ -145,17 +145,13 @@ class DeleteDialog(QDialog):
             QMessageBox.warning(QMessageBox(), 'Error', 'Could not Delete student from the database.')
 
 
-#--------------------------------------------------------------------------------------------------------------------------------
+
 
 class MainWindow(QMainWindow):
     def __init__(self, *args, **kwargs):
         super(MainWindow, self).__init__(*args, **kwargs)
         self.setWindowIcon(QIcon('icon1.png'))
         
-       
-        
-    
-       
 
         self.conn = sqlite3.connect("database.db")
         self.c = self.conn.cursor()
@@ -202,7 +198,7 @@ class MainWindow(QMainWindow):
 
       
 
-#--------------------------------------------------------------------------------------------------------------------------------
+
  
 
     def loaddata(self):
@@ -215,7 +211,7 @@ class MainWindow(QMainWindow):
             for column_number, data in enumerate(row_data):
                 self.tableWidget.setItem(row_number, column_number,QTableWidgetItem(str(data)))
         self.connection.close()
-#--------------------------------------------------------------------------------------------------------------------------------
+
 
     def insert(self):
         dlg = InsertDialog()
@@ -225,7 +221,7 @@ class MainWindow(QMainWindow):
         dlg = DeleteDialog()
         dlg.exec_()
 
-#--------------------------------------------------------------------------------------------------------------------------------
+
 
 
 app = QApplication(sys.argv)
